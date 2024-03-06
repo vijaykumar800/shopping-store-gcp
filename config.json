@@ -2,12 +2,10 @@
   "GCS_BUCKET_PATH": {
     "DEV_BUCKET_LOCATION": "gs://development-shopper-table/shopping_store_bq_external.csv",
     "PRD_BUCKET_LOCATION": "gs://shopper-table/shopping_store_bq_external.csv",
-    "GCS_CLIENT": "gcsfs.GCSFileSystem()",
     "DEV_BUCKET_NAME": "development-shopper-table",
     "PRD_BUCKET_NAME": "shopper-table"
   },
   "GOOGLE_CONFIG": {
-    "CLIENT": "bigquery.Client()",
     "DB_NAME": "store_data",
     "PROJECT_ID": "shopping-store-415510",
     "DEV_TABLE_NAME": "development_shopper_table",
