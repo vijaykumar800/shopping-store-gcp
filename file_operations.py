@@ -2,6 +2,7 @@ import pandas as pd
 import gcsfs
 import json
 from google.cloud import bigquery
+from config import CONFIG_JSON
 
 
 def read_config():
@@ -13,20 +14,20 @@ column_data_types = read_config()
 
 
 class ShopperFile:
-    __client = bigquery.Client()
-    __project_id = "shopping-store-415510"
-    __db_name = "store_data"
-    __dev_table_name = "development_shopper_table"
-    __prd_table_name = "shopper_table"
+    __client = CONFIG_JSON["GOOGLE_CONFIG"]["CLIENT"]
+    __project_id = CONFIG_JSON["GOOGLE_CONFIG"]["PROJECT_ID"]
+    __db_name = CONFIG_JSON["GOOGLE_CONFIG"]["DB_NAME"]
+    __dev_table_name = CONFIG_JSON["GOOGLE_CONFIG"]["DEV_TABLE_NAME"]
+    __prd_table_name = CONFIG_JSON["GOOGLE_CONFIG"]["PRD_TABLE_NAME"]
 
     def __init__(self,excel_file_name,excel_bucket_name):
         self.excel_file_name = excel_file_name
         self.excel_bucket_name = excel_bucket_name
-        self.dev_bucket_location = "gs://development-shopper-table/shopping_store_bq_external.csv"
-        self.prd_bucket_location = "gs://shopper-table/shopping_store_bq_external.csv"
-        self.fs = gcsfs.GCSFileSystem()
-        self.dev_bucket_name = "development-shopper-table"
-        self.prd_bucket_name = "shopper-table"
+        self.dev_bucket_location = CONFIG_JSON["GCS_BUCKET_PATH"]["DEV_BUCKET_LOCATION"]
+        self.prd_bucket_location = CONFIG_JSON["GCS_BUCKET_PATH"]["PRD_BUCKET_LOCATION"]
+        self.fs = CONFIG_JSON["GCS_BUCKET_PATH"]["GCS_CLIENT"]
+        self.dev_bucket_name = CONFIG_JSON["GCS_BUCKET_PATH"]["DEV_BUCKET_NAME"]
+        self.prd_bucket_name = CONFIG_JSON["GCS_BUCKET_PATH"]["PRD_BUCKET_NAME"]
 
     def load_content(self):
         excel_file_uri = f"gs://{self.excel_bucket_name}/{self.excel_file_name}"
