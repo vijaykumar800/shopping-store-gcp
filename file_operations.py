@@ -14,7 +14,7 @@ column_data_types = read_config()
 
 
 class ShopperFile:
-    __client = CONFIG_JSON["GOOGLE_CONFIG"]["CLIENT"]
+    __client = bigquery.Client()
     __project_id = CONFIG_JSON["GOOGLE_CONFIG"]["PROJECT_ID"]
     __db_name = CONFIG_JSON["GOOGLE_CONFIG"]["DB_NAME"]
     __dev_table_name = CONFIG_JSON["GOOGLE_CONFIG"]["DEV_TABLE_NAME"]
@@ -25,7 +25,7 @@ class ShopperFile:
         self.excel_bucket_name = excel_bucket_name
         self.dev_bucket_location = CONFIG_JSON["GCS_BUCKET_PATH"]["DEV_BUCKET_LOCATION"]
         self.prd_bucket_location = CONFIG_JSON["GCS_BUCKET_PATH"]["PRD_BUCKET_LOCATION"]
-        self.fs = CONFIG_JSON["GCS_BUCKET_PATH"]["GCS_CLIENT"]
+        self.fs = gcsfs.GCSFileSystem()
         self.dev_bucket_name = CONFIG_JSON["GCS_BUCKET_PATH"]["DEV_BUCKET_NAME"]
         self.prd_bucket_name = CONFIG_JSON["GCS_BUCKET_PATH"]["PRD_BUCKET_NAME"]
 
