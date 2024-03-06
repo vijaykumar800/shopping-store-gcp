@@ -66,7 +66,7 @@ class ShopperFile:
                 is_output_empty_or_error = False
 
         except Exception as e:
-            print(f"An error occurred during query execution: {e}")
+            print(f"An unexpected error occurred: {e}")
         return is_output_empty_or_error
 
     def test_deploy(self):
