@@ -55,19 +55,16 @@ class ShopperFile:
         with self.fs.open(gcs_bucket_location, 'w') as f:
             df.to_csv(f, index=False)
 
-
-
-
     def validate_external_table(self,table_name=None):
         select_query = f"""select * from {self.__project_id}.{self.__db_name}.{table_name};"""
         is_output_empty_or_error = True
         try:
             query_job = self.__client.query(select_query)
-            query_result = query_job.result()
+            query_job.result()
 
-            for row in query_result:
+            if query_job.total_rows > 0:
                 is_output_empty_or_error = False
-                break
+
         except Exception as e:
             print(f"An error occurred during query execution: {e}")
         return is_output_empty_or_error
