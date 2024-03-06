@@ -60,9 +60,11 @@ class ShopperFile:
         is_output_empty_or_error = True
         try:
             query_job = self.__client.query(select_query)
-            query_job.result()
+            query_job_result = query_job.result()
+            query_job_row_count = query_job_result.total_rows
+            print("number of rows in the table", query_job_row_count)
 
-            if query_job.num_results > 0:
+            if query_job_row_count > 0:
                 is_output_empty_or_error = False
 
         except Exception as e:
