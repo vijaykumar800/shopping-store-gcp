@@ -75,12 +75,16 @@ class ShopperFile:
         return is_output_empty_or_error
 
     def production_deploy(self):
-        is_output_empty_or_error = self.test_deploy()
-        if is_output_empty_or_error:
-            print("The output is empty or an error occurred.")
+        is_dev_output_empty_or_error = self.test_deploy()
+        if is_dev_output_empty_or_error:
+            print("The output is empty or an error occurred in development phase.")
         else:
             self.export_csv_to_gcs(gcs_bucket_location=self.prd_bucket_location, bucket_name=self.prd_bucket_name)
-            self.validate_external_table(table_name=self.__prd_table_name)
+            is_prd_output_empty_or_error = self.validate_external_table(table_name=self.__prd_table_name)
+            if is_prd_output_empty_or_error:
+                print("The output is empty or an error occurred in production stage.")
+
+
 
 
 
