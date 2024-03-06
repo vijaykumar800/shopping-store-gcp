@@ -1,0 +1,10 @@
+{
+  "firstname": "str",
+  "lastname": "str",
+  "age": "int",
+  "sex": "str",
+  "phonenumber": "int",
+  "country": "str",
+  "state": "str",
+  "pincode": "int"
+}

@@ -1,0 +1,3 @@
+gcloud functions deploy shopper-file --runtime python310 --trigger-resource shopper-store-excel-file --trigger-event google.storage.object.finalize --entry-point hello_gcs --memory 1GiB
+
+gsutil cp "C:\all concept\projects\shopper_file_excel.xlsx" gs://shopper-store-excel-file/shopper_file_excel_new.xlsx
