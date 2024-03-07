@@ -38,7 +38,7 @@ class ShopperFile:
 
     @staticmethod
     def clean_sex_column(value):
-        if value == 'NA':
+        if pd.isna(value):
             return value
         else:
             male_pattern = re.compile(r'male', re.IGNORECASE)
