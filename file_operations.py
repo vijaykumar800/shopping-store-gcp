@@ -41,7 +41,7 @@ class ShopperFile:
         if value == 'NA':
             return value
         else:
-            male_pattern = re.complie(r'male', re.IGNORECASE)
+            male_pattern = re.compile(r'male', re.IGNORECASE)
             female_pattern = re.compile(r'female', re.IGNORECASE)
             if male_pattern.search(value):
                 return "male"
