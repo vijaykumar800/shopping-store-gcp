@@ -3,6 +3,7 @@ import gcsfs
 import json
 from google.cloud import bigquery
 from config import CONFIG_JSON
+import re
 
 
 def read_config():
@@ -35,6 +36,20 @@ class ShopperFile:
             df = pd.read_excel(file, engine='openpyxl')
         return df
 
+    @staticmethod
+    def clean_sex_column(value):
+        if value == 'NA':
+            return value
+        else:
+            male_pattern = re.complie(r'male', re.IGNORECASE)
+            female_pattern = re.compile(r'female', re.IGNORECASE)
+            if male_pattern.search(value):
+                return "male"
+            elif female_pattern.search(value):
+                return "female"
+            else:
+                return 'NA'
+
     def fix_column_data_types(self):
         df = self.load_content()
         for col, expected_dtype in column_data_types.items():
@@ -43,7 +58,8 @@ class ShopperFile:
             elif expected_dtype == 'int':
                 df[col] = df[col].apply(lambda x: x if isinstance(x, (int, float)) else pd.NA).astype('Int64',
                                                                                                      errors='ignore')
-                print(df)
+        df['sex'] = df['sex'].apply(self.clean_sex_column)
+        print(df)
         return df
 
     def export_csv_to_gcs(self, gcs_bucket_location=None, bucket_name=None):
