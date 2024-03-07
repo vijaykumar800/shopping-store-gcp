@@ -41,14 +41,14 @@ class ShopperFile:
         if pd.isna(value):
             return value
         else:
-            male_pattern = re.compile(r'male', re.IGNORECASE)
-            female_pattern = re.compile(r'female', re.IGNORECASE)
+            male_pattern = re.compile(r'\bmale\b', re.IGNORECASE)
+            female_pattern = re.compile(r'\bfemale\b', re.IGNORECASE)
             if male_pattern.search(value):
                 return "male"
             elif female_pattern.search(value):
                 return "female"
             else:
-                return 'NA'
+                return pd.NA
 
     def fix_column_data_types(self):
         df = self.load_content()
