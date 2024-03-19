@@ -1,14 +1,15 @@
 {
   "GCS_BUCKET_PATH": {
-    "DEV_BUCKET_LOCATION": "gs://development-shopper-table/shopping_store_bq_external.csv",
-    "PRD_BUCKET_LOCATION": "gs://shopper-table/shopping_store_bq_external.csv",
-    "DEV_BUCKET_NAME": "development-shopper-table",
-    "PRD_BUCKET_NAME": "shopper-table"
+    "DEV_BUCKET_LOCATION": "gs://development-shopper-data/shopping_store_bq_external.csv",
+    "PRD_BUCKET_LOCATION": "gs://production-shopper-data/shopping_store_bq_external.csv",
+    "DEV_BUCKET_NAME": "development-shopper-data",
+    "PRD_BUCKET_NAME": "production-shopper-data",
+    "POSTAL_BUCKET_LOCATION": "gs://postal-code-shopper/all_india_PO_list_without_APS_offices_ver2_lat_long.csv"
   },
   "GOOGLE_CONFIG": {
     "DB_NAME": "store_data",
-    "PROJECT_ID": "shopping-store-415510",
+    "PROJECT_ID": "tidal-triumph-417607",
     "DEV_TABLE_NAME": "development_shopper_table",
-    "PRD_TABLE_NAME": "shopper_table"
+    "PRD_TABLE_NAME": "production_shopper_table"
   }
 }

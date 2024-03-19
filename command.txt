@@ -1,3 +1,16 @@
-gcloud functions deploy shopper-file --runtime python310 --trigger-resource shopper-store-excel-file --trigger-event google.storage.object.finalize --entry-point hello_gcs --memory 1GiB
 
-gsutil cp "C:\all concept\projects\shopper_file_excel.xlsx" gs://shopper-store-excel-file/shopper_file_excel_new.xlsx
+gsutil cp "C:\all concept\projects\shopper_file_excel.xlsx" gs://shopper-store-excel-us-central1/shopper_file_excel_new.xlsx
+
+gcloud functions deploy shopper-file --runtime python310 --trigger-resource shopper-store-excel --trigger-event google.storage.object.finalize --entry-point hello_gcs --memory 1GiB
+
+
+gcloud functions deploy shopper-file --runtime python310 --gen2 --trigger-resource shopper-store-excel-us-central1 --trigger-event google.storage.object.finalize --entry-point hello_gcs --memory 1GiB --region us-central1
+
+
+git status
+
+git add config.py
+
+git commit -m "Updated config.py to fix issue #1"
+
+git push origin your_current_branch
